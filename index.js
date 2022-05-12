@@ -59,7 +59,7 @@ function nextRound(){
 
     tileContainer.classList.add('unclickable');
     info.textContent = "Wait for the computer"
-    heading.textContent = `Level ${level} of 20`; 
+    heading.textContent = `Level ${level} of 5`; 
     const nextSequence =[...sequence];
     nextSequence.push(nextStep());
     playRound(nextSequence);
@@ -69,13 +69,12 @@ function nextRound(){
         humanTurn(level);
     }, level * 600 + 1000);
 
-
 }
 
 function handleClick(tile){
     const index = humanSequence.push(tile) - 1;
     const sound = document.querySelector(`[data-sound='${tile}']`);
-    sound.play;
+    sound.play();
 
     const remainingTaps = sequence.length - humanSequence.length;
 
@@ -84,7 +83,7 @@ function handleClick(tile){
         return;
     }
     if(humanSequence.length === sequence.length){
-        if (humanSequence.length === 10){
+        if (humanSequence.length === 5){
             resetGame('Congrats! You completed all the levels');
         }
         humanSequence = [];
