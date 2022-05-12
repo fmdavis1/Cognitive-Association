@@ -22,8 +22,12 @@ Stetch Goals:
 
 
 ### Wireframe
+![wireframe](./Images/wireframe.png)
 
 ### Resources 
 https://freshman.tech/simon-game/
+
+### Git Hub link
+https://github.com/fmdavis1/Cognitive-Association
 
 
