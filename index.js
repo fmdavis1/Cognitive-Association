@@ -8,7 +8,7 @@ const info = document.querySelector('.js-info');
 const heading = document.querySelector('.js-heading');
 const tileContainer = document.querySelector('.js-container');
 
-function resetGame(text){
+function resetGame(text) {
     alert(text);
     sequence = []
     humanSequence = []
@@ -19,14 +19,14 @@ function resetGame(text){
     tileContainer.classList.add('unclickable');
 
 }
-function humanTurn(level){
+function humanTurn(level) {
     tileContainer.classList.remove('unclickable');
-    info.textContent = `Your turn ${level} Tap${level > 1 ? 's': ''}`;
+    info.textContent = `Your turn ${level} Tap${level > 1 ? 's' : ''}`;
 }
 
 
 
-function activateTile(color){
+function activateTile(color) {
     const tile = document.querySelector(`[data-tile='${color}']`)
     const sound = document.querySelector(`[data-sound='${color}']`)
 
@@ -36,54 +36,63 @@ function activateTile(color){
     setTimeout(() => {
         tile.classList.remove('activated');
     }, 300);
-    }
+}
 
-    function playRound(nextSequence){
-        nextSequence.forEach ((color,index) => {
-            setTimeout(() => {
-                activateTile(color);
+function playRound(nextSequence) {
+    nextSequence.forEach((color, index) => {
+        setTimeout(() => {
+            activateTile(color);
 
-            }, (index + 1)  * 600);
-        });
-    }
+        }, (index + 1) * 600);
+        console.log(index)
+    });
+}
 
-function nextStep(){
-    const tiles = ['red', 'green', 'blue','yellow']
+function nextStep() {
+    const tiles = ['red', 'green', 'blue', 'yellow']
     const random = tiles[Math.floor(Math.random() * tiles.length)]
 
     return random;
 }
 
-function nextRound(){
+function nextRound() {
     level += 1;
 
     tileContainer.classList.add('unclickable');
     info.textContent = "Wait for the computer"
-    heading.textContent = `Level ${level} of 5`; 
-    const nextSequence =[...sequence];
+    heading.textContent = `Level ${level} of 5`;
+    const nextSequence = [...sequence];
     nextSequence.push(nextStep());
     playRound(nextSequence);
 
     sequence = [...nextSequence];
-    setTimeout (() => {
+    setTimeout(() => {
         humanTurn(level);
     }, level * 600 + 1000);
 
 }
 
-function handleClick(tile){
+function handleClick(tile) {
     const index = humanSequence.push(tile) - 1;
     const sound = document.querySelector(`[data-sound='${tile}']`);
     sound.play();
 
     const remainingTaps = sequence.length - humanSequence.length;
 
-    if (humanSequence[index]  !== sequence[index]){
+    // if (humanSequence[index] !== sequence[index]) {
+    //     console.log(index)
+        // info.textContent = 'You get a second chance!';
+        // playRound(sequence[index])
+        // console.log(index)
+    
+     if(humanSequence[index] !== sequence[index]){
         resetGame('Oops! Game over, you pressed the wrong tile');
         return;
-    }
-    if(humanSequence.length === sequence.length){
-        if (humanSequence.length === 5){
+        }
+    
+    
+    if (humanSequence.length === sequence.length) {
+        if (humanSequence.length === 5) {
             resetGame('Congrats! You completed all the levels');
         }
         humanSequence = [];
@@ -96,7 +105,7 @@ function handleClick(tile){
 
     info.textContent = `Your turn ${remainingTaps} Taps${remainingTaps > 1 ? 's' : ''}`;
 }
-function startGame (){
+function startGame() {
     startButton.classList.add('hidden')
     info.classList.remove('hidden')
     info.textContent = "Wait for the computer";
@@ -106,7 +115,7 @@ function startGame (){
 startButton.addEventListener('click', startGame);
 
 tileContainer.addEventListener('click', (event) => {
-    const {tile} = event.target.dataset;
+    const { tile } = event.target.dataset;
     console.log(event)
 
     if (tile) handleClick(tile)

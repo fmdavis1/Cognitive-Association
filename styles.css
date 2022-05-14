@@ -14,7 +14,7 @@
     display: flex;
     justify-content: center;
     font-family: 'Rubik', sans-serif;
-    background-color:lightblue;
+    background-color:#70a1d5;
   }
   
   .game {
@@ -102,7 +102,7 @@
     background-color: #ffb900;
     box-shadow: 0 0 0 1px #ffb900 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 8px 0 0 #c28e07, 0 8px 0 1px rgba(0, 0, 0, 0.4), 0 8px 8px 1px rgba(0, 0, 0, 0.5);
     transition: 0.15s;
-    border-radius: 90px;
+    /* border-radius: 90px; */
   }
   
   .tile-yellow:hover,
@@ -139,6 +139,7 @@
   
   .info-section {
     text-align: center;
+    margin-left: 150px;
   }
   
   .start-button {
@@ -168,6 +169,7 @@
   
   .info {
     font-size: 22px;
+    margin-left: 75px
   }
   
   @media screen and (max-width: 550px) {
