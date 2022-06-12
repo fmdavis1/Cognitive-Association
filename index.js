@@ -32,7 +32,6 @@ function humanTurn(level) {
 function activateTile(color) {
     const tile = document.querySelector(`[data-tile='${color}']`)
     const sound = document.querySelector(`[data-sound='${color}']`)
-console.log(tile)
     tile.classList.add('activated');
     sound.play();
 
@@ -61,7 +60,7 @@ function nextStep() {
     return random;
 }
 
-//  2.The nextRound function starts each round of the game. Makes tiles unclickable while computer sets up and runs through sequence.  This is done by going to nextStep function and the playRound function. Then humanTurn Level provides for human player to run through sequence.
+//  2.The nextRound function starts each round of the game. Makes tiles unclickable while computer sets up and runs through sequence.  This is done by going to nextStep function and the playRound function. Then humanTurn provides for player to run through sequence.
 function nextRound() {
     level += 1;
 
@@ -78,30 +77,21 @@ function nextRound() {
     }, level * 600 + 1000);
 
 }
-// This function determines if the tile clicked on by human player matches computer sequence.  From there it determines outcome.  If a miss, oops messaage and  game resets;  if completion, congrats message and game resets; if successful completion of a round,  a success message and moves to the nextRound which continues/repeats until and error is made or game is completed successful.
+// This function determines if the tile clicked on by player matches computer sequence.  From there it determines outcome.  If a miss, oops messaage and  game resets;  if completion, congrats message and game resets; if successful completion of a round,  a success message and moves to the nextRound which continues/repeats until and error is made or game is completed successful.
 
 function handleClick(tile) {
+    console.log(tile)
     const index = humanSequence.push(tile) - 1;
-    console.log(index)
+    console.log(humanSequence)
+    console.log(tile)
     const sound = document.querySelector(`[data-sound='${tile}']`);
     sound.play();
 
     const remainingTaps = sequence.length - humanSequence.length;
-
-    // if (humanSequence[index] !== sequence[index]) {
-    //     console.log(index)
-        // info.textContent = 'You get a second chance!';
-        // playRound(sequence[index])
-        // console.log(index)
-    
      if(humanSequence[index] !== sequence[index]){
-    //      console.log(sequence[index])
-    //      playRound(sequence[index]);
-    //  }else if(humanSequence[index] !== sequence[index])
      resetGame('Oops! Game over, you pressed the wrong tile');
         return;
         }
-    
     
     if (humanSequence.length === sequence.length) {
         if (humanSequence.length === 5) {
@@ -129,14 +119,11 @@ function startGame() {
 //EventListener added to button to start game.
 startButton.addEventListener('click', startGame);
 
-//Eventlistener for tile container.  Listens for when  a tile is clicked. Used to initiate handClick function.
+//Eventlistener for tile container.  Listens for when  a tile is clicked. Used to initiate handleClick function.
 
 tileContainer.addEventListener('click', (event) => {
     const {tile } = event.target.dataset;
-    // console.log(event)
-    // console.log({tile})
-    // console.log(tile)
-
+    
     if (tile) handleClick(tile)
 })
 

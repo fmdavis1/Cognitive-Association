@@ -39,7 +39,6 @@
   
   .heading {
     font-size: 3em;
-    margin-left: -75px
   }
   
    .tile-container {
@@ -169,7 +168,6 @@
   
   .info {
     font-size: 22px;
-    margin-left: 75px
   }
   
   @media screen and (max-width: 550px) {
